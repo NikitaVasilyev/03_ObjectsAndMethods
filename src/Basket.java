@@ -1,9 +1,13 @@
-public class Basket {
-
+public class Basket
+{
     private static int count = 0;
     private String items = "";
     private int totalPrice = 0;
     private int limit;
+    private double weight = 0;
+    private double totalWeight = 0;
+    private static final int DEFAULT_COUNT = 1;
+    private static final double DEFAULT_WEIGHT = 0.0;
 
     public Basket() {
         increaseCount(1);
@@ -16,10 +20,11 @@ public class Basket {
         this.limit = limit;
     }
 
-    public Basket(String items, int totalPrice) {
+    public  Basket(String items, int totalPrice, double totalWeight) {
         this();
         this.items = this.items + items;
         this.totalPrice = totalPrice;
+        this.totalWeight = totalWeight;
     }
 
     public static int getCount() {
@@ -31,27 +36,36 @@ public class Basket {
     }
 
     public void add(String name, int price) {
-        add(name, price, 1);
+        add(name, price, DEFAULT_COUNT, DEFAULT_WEIGHT);
     }
 
     public void add(String name, int price, int count) {
+        add(name, price, count, DEFAULT_WEIGHT);
+    }
+
+    public void add(String name, int price, double weight) {
+        add(name, price, DEFAULT_COUNT, weight);
+    }
+
+    public void add(String name, int price, int count, double weight) {
         boolean error = false;
         if (contains(name)) {
             error = true;
         }
-
         if (totalPrice + count * price >= limit) {
             error = true;
         }
-
         if (error) {
             System.out.println("Error occured :(");
             return;
         }
 
         items = items + "\n" + name + " - " +
-                count + " шт. - " + price;
+                count + " шт., цена - " + price + " руб., вес - " + weight + " граммов";
         totalPrice = totalPrice + count * price;
+        totalWeight = totalWeight + count * weight;
+        System.out.println("Общая сумма " + totalPrice);
+        System.out.println("Общий вес " + totalWeight);
     }
 
     public void clear() {
@@ -63,7 +77,11 @@ public class Basket {
         return totalPrice;
     }
 
-    public boolean contains(String name) {
+    public double getTotalWeight() {
+        return totalWeight;
+    }
+
+    public  boolean contains(String name) {
         return items.contains(name);
     }
 
