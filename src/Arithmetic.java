@@ -1,10 +1,4 @@
 public class Arithmetic {
-    private int sum;
-    private int difference;
-    private int product;
-    private int averageValue;
-    private int maxValue;
-    private int minValue;
 
     private int x;
     private int y;
