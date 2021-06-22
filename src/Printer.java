@@ -5,9 +5,9 @@ public class Printer {
     private static int totalCount = 0;
 
     public static void main(String[] args) {
-        append("Документ №1", "Документ №1 на печати.");
-        append("Документ №2", "Документ №2 на печати.");
-        append("Документ №3", "Документ №3 на печать.");
+        append("Документ №1", "Документ №1 на печати.", 2);
+        append("Документ №2", "Документ №2 на печати.", 2);
+        append("Документ №3", "Документ №3 на печать.", 2);
         print("Документы на печать: ");
         int pagesCount = getPagesCont();
         int documentsCount = getDocumentsCount();
@@ -16,7 +16,7 @@ public class Printer {
         System.out.println("Общее количество документов на печать: " + documentsCount);
         clear();
         System.out.println();
-        print("Документы на печать: ");
+        print("Документы на печать: " + getDocumentsCount());
         pagesCount = getPagesCont();
         documentsCount = getDocumentsCount();
         System.out.println("Общее количество страниц на печать: " + pagesCount);
@@ -24,7 +24,7 @@ public class Printer {
     }
 
     public static void append(String name, String text){
-        append(name, text, 200);
+        append(name, text, 1);
     }
 
     public static void append(String name, String text, int page){
