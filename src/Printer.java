@@ -63,5 +63,6 @@ public class Printer {
         }else {
             System.out.println(queue);
         }
+        clear();
     }
 }
