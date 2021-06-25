@@ -5,9 +5,9 @@ public class Printer {
     private static int totalCount = 0;
 
     public static void main(String[] args) {
-        append("Документ №1", "Документ №1 на печати.", 2);
-        append("Документ №2", "Документ №2 на печати.", 2);
-        append("Документ №3", "Документ №3 на печать.", 2);
+        append("Документ №1", "Документ №1 на печати.",1);
+        append("Документ №2", "Документ №2 на печати.",1);
+        append("Документ №3", "Документ №3 на печать.",1);
         print("Документы на печать: ");
         int pagesCount = getPagesCont();
         int documentsCount = getDocumentsCount();
@@ -24,15 +24,17 @@ public class Printer {
     }
 
     public static void append(String name, String text){
-        append(name, text, 1);
+        append(name, text,1);
     }
 
     public static void append(String name, String text, int page){
-        append(name, text, page, 1);
+        append(name, text, page,1);
     }
 
     public static void append(String name, String text, int page, int document){
-        queue = queue + "\nНаименование документа: " + name + "\nТекст документа: " + text + "\nКоличество страниц в документе: " + page + "\nКоличество документов: " + document + "\n";
+        queue = queue + "\nНаименование документа: " + name + "\nТекст документа: " +
+                text + "\nКоличество страниц в документе: " + page +
+                "\nКоличество документов: " + document + "\n";
         pagesCount = pagesCount + page;
         documentsCount = documentsCount + document;
         totalCount = page * documentsCount;
@@ -59,10 +61,11 @@ public class Printer {
     public  static void print(String title){
         System.out.println(title);
         if (queue.isEmpty()){
-            System.out.println("В очереди на печать нет документов." + "\nОбщее количество распечатанных страниц: " + totalCount);
+            System.out.println("В очереди на печать нет документов." +
+                    "\nОбщее количество распечатанных страниц: " + totalCount);
         }else {
             System.out.println(queue);
         }
-        clear();
+       // clear();
     }
 }
